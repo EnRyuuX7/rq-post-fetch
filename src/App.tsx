@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import ResponsiveDrawer from "./components/ResponsiveDrawer";
+import EmployeeList from "./components/EmployeeList";
+import "./App.css";
+import EmployeeForm from "./components/EmployeeForm";
 
+const queryClient = new QueryClient();
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <QueryClientProvider client={queryClient}>
+            <div className="App">
+                <ResponsiveDrawer />
+                {/* <UserList /> */}
+                <EmployeeList />
+                <EmployeeForm />
+            </div>
+
+            <ReactQueryDevtools initialIsOpen={false} position="bottom-left" />
+        </QueryClientProvider>
+    );
 }
 
 export default App;
